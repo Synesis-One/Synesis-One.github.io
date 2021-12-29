@@ -1,1 +1,0 @@
-# Synesis-One.github.io
