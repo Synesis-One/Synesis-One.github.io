@@ -41,11 +41,10 @@ $(window).on('load', function() {
         let hours = '';
         days = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).text()
         hours = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).text()
-        console.log(days, hours)
         let all = parseInt(days) * 24 + parseInt(hours);
-        if(all < 3) all = 3;
-        let real_day = parseInt((parseInt(all) - 3) / 24);
-        let real_hour = parseInt((parseInt(all) - 3) % 24);
+        if(all == 0) return;
+        let real_day = parseInt((parseInt(all) + 3) / 24);
+        let real_hour = parseInt((parseInt(all) + 3) % 24);
         $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).text(real_day)
         $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).text(real_hour)
     }, 1000);
