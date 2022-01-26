@@ -22,32 +22,51 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  
-    
-});
-$(window).on('load', function() {
- // code here
-    var day = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).clone();
-    var hour = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).clone();
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).after(day)
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).after(hour)
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).hide()
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).hide()
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).text("0")
-    $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).text("0")
-    setInterval(function () {
-        let days = '';
-        let hours = '';
-        days = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).text()
-        hours = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).text()
-        let all = parseInt(days) * 24 + parseInt(hours);
-        if(all == 0) return;
-        let real_day = parseInt((parseInt(all) + 3) / 24);
-        let real_hour = parseInt((parseInt(all) + 3) % 24);
-        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).text(real_day)
-        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).text(real_hour)
-    }, 1000);
-});
+    $(document).ready(function () {
+
+
+    });
+    $(window).on('load', function () {
+        var target = 1645808400;
+
+        // code here
+        var day = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).clone();
+        var hour = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).clone();
+        var mins = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).clone();
+        var seconds = $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).clone();
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).after(day)
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).after(hour)
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(4).after(mins)
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(6).after(seconds)
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(0).hide()
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(2).hide()
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(4).hide()
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(6).hide()
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).text("0")
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).text("0")
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(5).text("0")
+        $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(7).text("0")
+        setInterval(function () {
+            let real_day = 0;
+            let real_hour = 0;
+            let real_mins = 0;
+            let real_seconds = 0;
+            let d = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+            var sensibleFormat = new Date(d)
+            var milliseconds = sensibleFormat.getTime()
+            let current_timestamp = Math.floor(milliseconds / 1000);
+            let difference = target - current_timestamp;
+
+            real_day = parseInt(difference / (60 * 60 * 24)),
+                real_hour = parseInt((difference / (60 * 60)) % 24),
+                real_mins = parseInt((difference / 60) % 60),
+                real_seconds = parseInt((difference) % 60)
+            $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(1).text(real_day)
+            $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(3).text(real_hour)
+            $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(5).text(real_mins)
+            $('.style_cardList__eDLNG').find('.style_cardText1__2PcfI').eq(7).text(real_seconds)
+        }, 1000);
+    });
 </script>
+
 </html>
