@@ -58,7 +58,7 @@
             let real_hour = 0;
             let real_mins = 0;
             let real_seconds = 0;
-            let d = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+            let d = new Date().toLocaleString();
             var sensibleFormat = new Date(d)
             var milliseconds = sensibleFormat.getTime()
             let current_timestamp = Math.floor(milliseconds / 1000);
